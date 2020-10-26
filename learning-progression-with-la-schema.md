@@ -6,17 +6,7 @@ Table of Contents
 =================
 
 * [CPE 1040 \- Fall 2020](#cpe-1040---fall-2020)
-  * [Learning Progression 004: External LEDs (Part 1 \- Fundamentals of computing I)](#learning-progression-004-external-leds-part-1---fundamentals-of-computing-i)
-    * [Step 1: Binary](#step-1-binary)
-      * [1\. Study](#1-study)
-        * [Positional numeral systems](#positional-numeral-systems)
-        * [Unsigned integers](#unsigned-integers)
-        * [Finite bit width](#finite-bit-width)
-        * [Primitive data types revisited](#primitive-data-types-revisited)
-        * [Signed integers](#signed-integers)
-        * [IEEE 754 floating point](#ieee-754-floating-point)
-      * [2\. Apply](#2-apply)
-      * [3\. Present](#3-present)
+  * [Learning Progression 004: External LEDs](#learning-progression-004-external-leds)
     * [Step 2: Data &amp; memory](#step-2-data--memory)
       * [1\. Study](#1-study-1)
         * [Arrays and memory](#arrays-and-memory)
@@ -25,32 +15,10 @@ Table of Contents
         * [Random access](#random-access)
       * [2\. Apply](#2-apply-1)
       * [3\. Present](#3-present-1)
-    * [Step 3: Computation](#step-3-computation)
-      * [1\. Study](#1-study-2)
-        * [Addition](#addition)
-        * [Subtraction in 2s complement](#subtraction-in-2s-complement)
-        * [Shifting](#shifting)
-        * [Multiplication](#multiplication)
-        * [Registers](#registers)
-        * [Instruction set architecture](#instruction-set-architecture)
-      * [2\. Apply](#2-apply-2)
-      * [3\. Present](#3-present-2)
-    * [Step 4: Minimal assembly (part 1)](#step-4-minimal-assembly-part-1)
-      * [1\. Study](#1-study-3)
-        * [Central processing unit (CPU)](#central-processing-unit-cpu)
-        * [Processor addressing modes](#processor-addressing-modes)
-        * [Load and store](#load-and-store)
-        * [Branching revisited](#branching-revisited)
-        * [Status bits](#status-bits)
-        * [Clock cycles](#clock-cycles)
-        * [Minimal instruction set CPU](#minimal-instruction-set-cpu)
-        * [micro:bit hex files](#microbit-hex-files)
-      * [2\. Apply](#2-apply-3)
-      * [3\. Present](#3-present-3)
 
-## Learning Progression 004: External LEDs (Part 1 - Fundamentals of computing I)
+## Learning Progression 004: External LEDs
 
-This progression introduces fundamentals of computing, including the binary system of data representation as well as the basics of memory and processing. We introduce assembly language in the context of a minimal instruction set processor. This is the lowest level of the software stack, where user programs are translated into machine code, executed step-by-step by the processor. This is also the level of computing which directly correpsonds to the simplest theoretical models of a computer. We also introduce the input-output capabilities of the micro:bit and build an external circuit to serve as an extension to the built-in 5x5 LED matrix to run our Screensavers program on.
+This progression introduces fundamentals of computing, including the binary system of data representation as well as the basics of memory and processing. We introduce assembly language in the context of a minimal instruction set processor. This is where the lowest layer of the software stack and the highest layer of the hardware stack coexist, and where user programs are translated into machine code and executed by the processor one instruction at a time. This is also the level of computing which directly correpsonds to the simplest theoretical models of a computer. We also introduce the input-output capabilities of the micro:bit and build an external circuit to serve as an extension to the built-in 5x5 LED matrix to run our Screensavers program on.
 
 ### Step 1: Binary   
 [[toc](#table-of-contents)]
