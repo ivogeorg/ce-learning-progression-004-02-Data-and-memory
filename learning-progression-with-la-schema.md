@@ -5,7 +5,17 @@ This is learning progression 004 for the Fall 2020 installment of the course CPE
 Table of Contents
 =================
 
-
+* [CPE 1040 \- Fall 2020](#cpe-1040---fall-2020)
+  * [Learning Progression 004: External LEDs](#learning-progression-004-external-leds)
+    * [Step 2: Data &amp; memory](#step-2-data--memory)
+      * [1\. Study](#1-study)
+        * [Arrays and memory](#arrays-and-memory)
+        * [Memory layout](#memory-layout)
+        * [Addressing](#addressing)
+        * [Random access](#random-access)
+        * [Memory management](#memory-management)
+      * [2\. Apply](#2-apply)
+      * [3\. Present](#3-present)
 
 
 ## Learning Progression 004: External LEDs
