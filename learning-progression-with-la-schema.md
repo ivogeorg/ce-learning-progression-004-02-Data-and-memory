@@ -88,6 +88,12 @@ Array address calculation example with sketch.
 
 Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
 
+ROM
+
+Flash, both RAM and ROM. micro:bit stores programs in Flash. It is written during the programming of the device ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)). The micro:bit progam (i.e. the HEX file) is written to the Flash ROM. 
+
+Interface chip.
+
 ##### Memory management
 
 - Keep the CPU supplied with work
