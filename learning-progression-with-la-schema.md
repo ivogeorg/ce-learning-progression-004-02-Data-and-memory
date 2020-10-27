@@ -5,16 +5,6 @@ This is learning progression 004 for the Fall 2020 installment of the course CPE
 Table of Contents
 =================
 
-* [CPE 1040 \- Fall 2020](#cpe-1040---fall-2020)
-  * [Learning Progression 004: External LEDs](#learning-progression-004-external-leds)
-    * [Step 2: Data &amp; memory](#step-2-data--memory)
-      * [1\. Study](#1-study)
-        * [Arrays and memory](#arrays-and-memory)
-        * [Memory layout](#memory-layout)
-        * [Addressing](#addressing)
-        * [Random access](#random-access)
-      * [2\. Apply](#2-apply)
-      * [3\. Present](#3-present)
 
 
 
@@ -33,17 +23,18 @@ This progression introduces fundamentals of computing, including the binary syst
 
 Arrays have indices. They are the closest analog of computer memory. Memory is organized as a large array with addresses. Each byte (8-bits) has an address, starting from 0x0 up to the highest address depending on the size of the memory.
 
-**TODO: A convincing fundamental motivating definition of memory.**  
+What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program).
+
 ```
-     -----------------
-0x00 | | | | | | | | |
-     -----------------
-0x01 | | | | | | | | |
-     -----------------
-0x02 | | | | | | | | |
-     -----------------
-0x03 | | | | | | | | |
-     -----------------
+       -----------------
+0x0000 | | | | | | | | |
+       -----------------
+0x0001 | | | | | | | | |
+       -----------------
+0x0002 | | | | | | | | |
+       -----------------
+0x0003 | | | | | | | | |
+       -----------------
 ```
 ##### Memory layout  
 [[toc](#table-of-contents)]
@@ -57,6 +48,8 @@ Functions.
 ##### Addressing  
 [[toc](#table-of-contents)]
 
+**TODO: Sketch "Address and data lines".**  
+
 Addresses, references, and pointers.  
 
 ##### Random access
@@ -65,6 +58,14 @@ Addresses, references, and pointers.
 Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
 
 Array address calculation example with sketch.  
+
+##### Memory management
+
+- Keep the CPU supplied with work
+- Hierarchy
+  - size, speed, cost
+  - caching  
+- Memory manager  
 
 #### 2. Apply
 [[toc](#table-of-contents)]
@@ -94,7 +95,9 @@ Array address calculation example with sketch.
    3. Memory alignment.  
    4. Calculation of array element addresses.  
       <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
-      <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" />  
+      <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
+      
+6. `[<lernact-prac>]`**[Optional super challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
 #### 3. Present
 [[toc](#table-of-contents)]
