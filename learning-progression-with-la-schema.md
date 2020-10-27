@@ -79,6 +79,8 @@ Array formula: _base address + index * base type size_. Arrays and memory revisi
 
 Array address calculation example with sketch.  
 
+Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
+
 ##### Memory management
 
 - Keep the CPU supplied with work
