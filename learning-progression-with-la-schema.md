@@ -66,6 +66,10 @@ Tradeoff between addressing granularity and hardware constraints (cost)
 
 **TODO: Sketch "Bit, byte, and word addressing".**
 
+Why byte? 
+  - Characters, ASCII, Unicode, etc. 
+  - Programs are not stored in Unicode!   
+
 More on word in later steps.
 
 ##### Random access
