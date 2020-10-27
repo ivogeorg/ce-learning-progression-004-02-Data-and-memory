@@ -76,6 +76,9 @@ Array address calculation example with sketch.
   - size, speed, cost
   - caching  
 - Memory manager  
+  - access (C/C++ vs other languages)
+  - smart pointers
+  - garbage collection
 
 #### 2. Apply
 [[toc](#table-of-contents)]
