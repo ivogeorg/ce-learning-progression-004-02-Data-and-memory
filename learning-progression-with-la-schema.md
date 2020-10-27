@@ -31,27 +31,32 @@ This progression introduces fundamentals of computing, including the binary syst
 ##### Arrays and memory
 [[toc](#table-of-contents)]
 
-Arrays have indices. They are the closest analog of computer memory. Memory is organized as a large array with addresses. Each byte (8-bits) has an address, starting from 0x0 up to the highest address depending on the size of the memory.
+Arrays are a ordered collections of data elements, which allow individual elements to be retrieved by their index in the sequence. The index range is [0, N-1], where N is the total number of array elements. Arrays are a close analog to computer memory. Memory is organized as a large array, and the indices of the elements are called `[<cept>]`_addresses_. Each `[<cept>]`_byte_ (8-bits) has an address, starting from 0b000 up to the highest address depending on the size of the memory.
 
-What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program).
+What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program). The state includes all the data the process is working with. For a computer to execute a program, the program itself and the program's data needs to be in the computer's memory.
 
+Here's a very simple sketch of memory, showing all the bits (shown as boxes) in 4 consecutive bytes with addresses shown on the left:
 ```
        -----------------
-0x0000 | | | | | | | | |
+0b0000 |0|1|1|1|0|0|0|0|
        -----------------
-0x0001 | | | | | | | | |
+0b0001 |1|1|0|1|0|1|1|0|
        -----------------
-0x0002 | | | | | | | | |
+0b0010 |1|0|0|0|1|1|0|1|
        -----------------
-0x0003 | | | | | | | | |
+0b0011 |0|0|1|1|0|0|1|0|
        -----------------
 ```
+Notice the _fixed bit width_ of data in memory.
+
 ##### Memory layout  
 [[toc](#table-of-contents)]
 
 Primitive types: integers, floats, booleans.  
 Composite types: strings, objects.  
 Arrays of any type.  
+
+Data type and interpretation of bit patterns!  
 
 Functions.  
 
@@ -63,6 +68,8 @@ Functions.
 Addresses, references, and pointers.  
 
 Tradeoff between addressing granularity and hardware constraints (cost)
+
+Encoders and decoders
 
 **TODO: Sketch "Bit, byte, and word addressing".**
 
