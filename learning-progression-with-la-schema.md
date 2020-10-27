@@ -53,12 +53,16 @@ Notice the _fixed bit width_ of data in memory.
 [[toc](#table-of-contents)]
 
 Primitive types: integers, floats, booleans.  
+Booleans: memory alignment (word).  
 Composite types: strings, objects.  
 Arrays of any type.  
 
 Data type and interpretation of bit patterns!  
 
-Functions.  
+Program storage and memory:  
+  - Processes: activated programs
+  - Functions and class methods
+  - Von Neumann (Princeton) vs Harvard architecture
 
 ##### Addressing  
 [[toc](#table-of-contents)]
@@ -94,6 +98,8 @@ Flash, both RAM and ROM. micro:bit stores programs in Flash. It is written durin
 
 Interface chip.
 
+_What's in the firmware of the micro:bit?_
+
 ##### Memory management
 
 - Keep the CPU supplied with work
@@ -104,6 +110,8 @@ Interface chip.
   - access (C/C++ vs other languages)
   - smart pointers
   - garbage collection
+- Processes and main memory  
+
 
 #### 2. Apply
 [[toc](#table-of-contents)]
