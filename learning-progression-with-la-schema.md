@@ -62,6 +62,12 @@ Functions.
 
 Addresses, references, and pointers.  
 
+Tradeoff between addressing granularity and hardware constraints (cost)
+
+**TODO: Sketch "Bit, byte, and word addressing".**
+
+More on word in later steps.
+
 ##### Random access
 [[toc](#table-of-contents)]
 
