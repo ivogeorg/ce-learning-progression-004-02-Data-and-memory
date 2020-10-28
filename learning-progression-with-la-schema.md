@@ -145,6 +145,15 @@ _What's in the firmware of the micro:bit?_
       
 6. `[<lernact-prac>]`**[Optional super challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
+**TODO: Resources**  
+1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript)  
+2. [Closures in TS](https://basarat.gitbook.io/typescript/recap/closure)  
+3. Fibonacci numbers and pine cones videos:
+   1. [Video 1](https://www.youtube.com/watch?v=ahXIMUkSXX0) 
+   2. [Video 2](https://www.youtube.com/watch?v=lOIP_Z_-0Hs)  
+   3. [Video 3](https://www.youtube.com/watch?v=14-NdQwKz9w&t=305s)  
+4. How to use this to efficiently arrive at a large result without maxing out the memory of the micro:bit?    
+
 #### 3. Present
 [[toc](#table-of-contents)]
 
