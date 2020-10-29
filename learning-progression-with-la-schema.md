@@ -13,7 +13,7 @@ Table of Contents
         * [Memory layout](#memory-layout)
         * [Addressing](#addressing)
         * [Random access](#random-access)
-        * [Memory management](#memory-management)
+        * [Types of memory](#types-of-memory)
       * [2\. Apply](#2-apply)
       * [3\. Present](#3-present)
 
@@ -83,7 +83,7 @@ Why byte?
 
 More on word in later steps.
 
-##### Random access
+##### Types of memory
 [[toc](#table-of-contents)]
 
 Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
