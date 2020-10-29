@@ -96,7 +96,9 @@ ROM
 
 Flash, both RAM and ROM. micro:bit stores programs in Flash. It is written during the programming of the device ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)). The micro:bit progam (i.e. the HEX file) is written to the Flash ROM. 
 
-Interface chip.
+https://www.google.com/search?q=is+flash+rom+or+ram
+
+Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)
 
 _What's in the firmware of the micro:bit?_
 
@@ -146,7 +148,7 @@ _What's in the firmware of the micro:bit?_
 6. `[<lernact-prac>]`**[Optional super challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
 **TODO: Resources**  
-1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript)  
+1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript) from [Web dev tutorials](https://scotch.io/).  
 2. [Closures in TS](https://basarat.gitbook.io/typescript/recap/closure) (from [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/).    
 3. Fibonacci numbers:
    1. ViHart videos:
