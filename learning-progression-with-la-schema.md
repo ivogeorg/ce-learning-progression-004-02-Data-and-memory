@@ -11,6 +11,7 @@ Table of Contents
       * [1\. Study](#1-study)
         * [Arrays and memory](#arrays-and-memory)
         * [Memory layout](#memory-layout)
+        * [Fixed width revisited](#fixed-width-revisited)
         * [Addressing](#addressing)
         * [Random access](#random-access)
         * [Types of memory](#types-of-memory)
@@ -63,6 +64,12 @@ Program storage and memory:
   - Processes: activated programs
   - Functions and class methods
   - Von Neumann (Princeton) vs Harvard architecture
+
+##### Fixed width revisited
+
+[Smaller integer types](https://makecode.com/language)  
+[`Buffer`](https://makecode.microbit.org/types/buffer)  
+
 
 ##### Addressing  
 [[toc](#table-of-contents)]
@@ -145,7 +152,7 @@ _What's in the firmware of the micro:bit?_
       <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
       
-6. `[<lernact-prac>]`**[Optional super challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
+6. `[<lernact-prac>]`**[Optional challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
 **TODO: Resources**  
 1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript) from [Web dev tutorials](https://scotch.io/).  
@@ -158,6 +165,8 @@ _What's in the firmware of the micro:bit?_
    2. [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).  
 4. How to use this to efficiently arrive at a large result without maxing out the memory of the micro:bit?     
 5. Example with closures for computing binary numbers?  
+
+7. `[<lernact-prac>]`**[Optional challenge, max 3 extra step points]** **TODO** Working with `Buffer` and explicit numerical types.  
 
 #### 3. Present 
 [[toc](#table-of-contents)]
