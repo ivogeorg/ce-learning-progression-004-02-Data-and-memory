@@ -120,6 +120,7 @@ _What's in the firmware of the micro:bit?_
   - smart pointers
   - garbage collection
 - Processes and main memory  
+- Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
 
 
 #### 2. Apply
@@ -148,6 +149,7 @@ _What's in the firmware of the micro:bit?_
    1. Byte-array simulation.
    2. Object memory footprint.  
    3. Memory alignment.  
+      1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
    4. Calculation of array element addresses.  
       <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
