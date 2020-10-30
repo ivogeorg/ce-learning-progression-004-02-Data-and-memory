@@ -55,7 +55,7 @@ Notice the _fixed bit width_ of data in memory.
 
 Primitive types: integers, floats, booleans.  
 Booleans: memory alignment (word).  
-Composite types: strings, objects.  
+Composite types: strings, objects (only data fields).  
 Arrays of any type.  
 
 Data type and interpretation of bit patterns!  
