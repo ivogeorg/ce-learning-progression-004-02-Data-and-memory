@@ -50,9 +50,12 @@ Here's a very simple sketch of memory, showing all the bits (shown as boxes) in 
 ```
 Notice the _fixed bit width_ of data in memory.
 
+**TODO: Read and Write operations**
+
 ##### Memory layout  
 [[toc](#table-of-contents)]
 
+Bytes vs words  
 Primitive types: integers, floats, booleans.  
 Booleans: memory alignment (word).  
 Composite types: strings, objects (only data fields).  
@@ -80,7 +83,7 @@ Addresses, references, and pointers.
 
 Tradeoff between addressing granularity and hardware constraints (cost)
 
-Encoders and decoders
+Encoders and decoders **TODO: question**
 
 **TODO: Sketch "Bit, byte, and word addressing".**
 
