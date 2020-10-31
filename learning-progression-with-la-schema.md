@@ -32,7 +32,7 @@ This progression introduces fundamentals of computing, including the binary syst
 ##### Arrays and memory
 [[toc](#table-of-contents)]
 
-Arrays are a ordered collections of data elements, which allow individual elements to be retrieved by their index in the sequence. The index range is [0, N-1], where N is the total number of array elements. Arrays are a close analog to computer memory. Memory is organized as a large array, and the indices of the elements are called `[<cept>]`_addresses_. Each `[<cept>]`_byte_ (8-bits) has an address, starting from 0b000 up to the highest address depending on the size of the memory.
+`[<lernact-rd>]`Arrays are a ordered collections of data elements, which allow individual elements to be retrieved by their index in the sequence. The index range is [0, N-1], where N is the total number of array elements. Arrays are a close analog to computer memory. Memory is organized as a large array, and the indices of the elements are called `[<cept>]`_addresses_. Each `[<cept>]`_byte_ (8-bits) has an address, starting from 0b000 up to the highest address depending on the size of the memory.
 
 What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program). The state includes all the data the process is working with. For a computer to execute a program, the program itself and the program's data needs to be in the computer's memory.
 
@@ -91,18 +91,22 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
           -----------------------------------------------------------------
    ```
    Notice the addresses. They are 0<sub>10</sub>, 4<sub>10</sub>, 8<sub>10</sub>, and 12<sub>10</sub>, because each boolean is 4 bytes wide.  
-5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]`, if the micro:bit uses word alignment.
-6. 
-Composite types: strings, objects (only data fields).  
-Arrays of any type.  
-
-Program storage and memory:  
-  - Processes: activated programs
-  - Functions and class methods
-  - Virtual tables  
-  - Von Neumann (Princeton) vs Harvard architecture
+5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]` provided the micro:bit uses word alignment for booleans.
+6. Object data is stored in memory blocks with the cumulative size of the class fields. The following sketch shows this for some familar classes from previous steps:
+   <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
+7. Of course, program code is also stored in memory. Here we need to distinguish among the following:
+   1. Program source code is stored as regular files in the file system, usually on drives, known as `[<cepc>]`_secondary storage_. For example, `screensavers.js` is a source file.    
+   2. Program `[<cept>]`_compiled_ binaries are stored as regular (though non-human readable) files, usually in _secondary storage_. For example, `microbit-screensavers.hex` is a compiled binary.  
+   3. When a program is activated for execution, and becomes a `[<cept>]`_process_, the following happens:
+      1. A process metadata block is created for the program. This contains addresses, identification numbers, and miscellaneous process management data.    
+      2. The program's compiled binaries are brought to `[<cept>]`_main memory_ (aka `[<cept>]`_primary storage_, the memory we have been talking about so far) in a `[<cept>]`_code segment_.  
+      3. The program's data is also brought to main memory, in a data segment.  
+      4. Additional memory for the program's execution is allocated and assigned to it.  
+      5. Using the process metadata block, the process is put on a `[<cept>]`_queue_ (which is just a list where elements are added from one end and removed from the other) of processes ready to execute.  
+8. Just as variables are named data, functions and class methods are named code. When a function or method is called, the process knows where the code is. For class methods, they are not stored for each object, but only once for the class. When a method is called on an object, the class code is executed.
 
 ##### Fixed width revisited
+[[toc](#table-of-contents)]
 
 [Smaller integer types](https://makecode.com/language)  
 [`Buffer`](https://makecode.microbit.org/types/buffer)  
@@ -147,6 +151,7 @@ Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-pro
 _What's in the firmware of the micro:bit?_
 
 ##### Memory management
+[[toc](#table-of-contents)]
 
 - lower levels of the software stack.
 - Keep the CPU supplied with work
