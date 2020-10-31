@@ -50,7 +50,9 @@ Here's a very simple sketch of memory, showing all the bits (shown as boxes) in 
 ```
 Notice the _fixed bit width_ of data in memory.
 
-**TODO: Read and Write operations**
+Memory has only two basic functions, `[<cept>]`_Read_ and `[<cept>]`_Write_.
+
+The most important property of memory is `[<cept>]`_speed_, in both reading and writing. The second most important property of memory is `[<cept>]`_capacity_. The more memory a computer has, the better. In the age of `[<cept>]`_big data_, memory is never enough, often by `[<cept>]`_orders of magnitude_.
 
 ##### Memory layout  
 [[toc](#table-of-contents)]
