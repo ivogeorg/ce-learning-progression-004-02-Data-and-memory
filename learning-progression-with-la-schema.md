@@ -13,8 +13,8 @@ Table of Contents
         * [Memory layout](#memory-layout)
         * [Fixed width revisited](#fixed-width-revisited)
         * [Addressing](#addressing)
-        * [Random access](#random-access)
         * [Types of memory](#types-of-memory)
+        * [Memory management](#memory-management)
       * [2\. Apply](#2-apply)
       * [3\. Present](#3-present)
 
@@ -71,13 +71,13 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
    3. Single-precision floating-point numbers.  
    4. Double-precision floating-point numbers (which use 2 words instead of one).  
    5. Booleans.  
-   All of these look like bit-patterns in binary. For example, the bit pattern:
-   ```
-          -----------------------------------------------------------------
-   0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
-          -----------------------------------------------------------------
-   ```
-   represents 2682257408<sub>10</sub> in unsigned integers, -1612709888<sub>10</sub> in signed integers, or -9.48676900925e-20 in floating-point numbers. _Note that the last number is an example of a short-hand representation of scientific notation. The `e-20` means * 10<sup>-20</sup>._ So, data types are important to distinguish between different interpretation of binary patterns in memory.   
+      All of these look like bit-patterns in binary. For example, the bit pattern:
+      ```
+             -----------------------------------------------------------------
+      0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+             -----------------------------------------------------------------
+      ```
+      represents 2682257408<sub>10</sub> in unsigned integers, -1612709888<sub>10</sub> in signed integers, or -9.48676900925e-20 in floating-point numbers. _Note that the last number is an example of a short-hand representation of scientific notation. The `e-20` means * 10<sup>-20</sup>._ So, data types are important to distinguish between different interpretation of binary patterns in memory.   
 4. Booleans are an interesting case. While a single bit can represent a boolean (0 for `false` and 1 for `true`), memories cannot manipulate (read or write) single bits. So, booleans are represented either by bytes, which are the smallest addressable units of memory, or words, which are the most efficient memory unit. Very often, data that are narrower than words are `[<cept>]`_word-aligned_ (meaning they are stored in words, with any extra bits set to zero). For example, here is how 4 word-aligned booleans will look in memory (the first two are `false` and the last two are `true`):
    ```
           -----------------------------------------------------------------
