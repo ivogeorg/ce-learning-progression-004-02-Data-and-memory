@@ -57,17 +57,49 @@ The most important property of memory is `[<cept>]`_speed_, in both reading and 
 ##### Memory layout  
 [[toc](#table-of-contents)]
 
-Bytes vs words  
-Primitive types: integers, floats, booleans.  
-Booleans: memory alignment (word).  
+The simplicity of memory devices shift the burden of efficient usage to the software stack. Let's list some of the computational artifacts that we write to and read from memory:
+1. We know that memory is `[<cept>]`_byte-addressed_. Any byte-sized data fits very efficiently into memory. Here are two examples:
+   1. [ASCII characters](http://www.asciitable.com/), which are a standard character set used by **all programming languages**, are 7-bits long. This character set is `[<cept>]`_fixed-length_, where length referes to the number of bytes one character takes. They all take one byte. In contrast, `[<cept>]`[_Unicode_](https://home.unicode.org/), which is the worldwide standard for representing all symbolic systems used by humanity, including [emoji](https://unicode.org/emoji/charts/full-emoji-list.html), due to its size, has adopted a `[<cept>]`_variable-length_ format.  
+   2. `[<cept>]`_Machine learning (ML)_ has become an ubiquitous technology and is utilized in all computing environments, from large data centers to the smallest resource-constrained `[<cept>]`_Internet-of-Things (IoT)_ devices on the `[<cept>]`_edge_ of the Internet. ML is a `[<cept>]`_memory-heavy_ (meaining it uses a lot of memory) technology, but in the latter case, memory is severly constrained. The computational artifacts that ML produces are called `[<cept>]`_models_. These models contain the learned knowledge which machines use to solve the problems they were `[<cept>]`_trained_ for. The models are large and complex `[<cept>]`_data structures_. To be able to use such a model on IoT devices, it has to be `[<cept>]`_compressed_ to fit in their limited memory. One of the techniques is `[<cept>]`_byte-packing_, which reduces the numerical data of the model to a `[<cept>]`_byte array_.  
+2. Except for memory-constrained applications, data is usually represented in `[<cept>`]_words_. Today a word is usually 4 bytes, or 32 bits. All `[<cept>]`_primitive data types_ are represented in words, meaning:
+   1. They are read from and written to memory as words.  
+   2. The processor works with word-sized `[<cept>]`_operands_ (e.g. for addition `a + b`, where `a` and `b` are the operands).  
+   3. Because both memory and processor work with words, the computer is optimized to work with words, thus making the word-sized data the most efficient to manipulate.  
+3. The primitive types that we have encountered are:
+   1. Unsigned integers.  
+   2. Signed integers.  
+   3. Single-precision floating-point numbers.  
+   4. Double-precision floating-point numbers (which use 2 words instead of one).  
+   5. Booleans.  
+   All of these look like bit-patterns in binary. For example, the bit pattern:
+   ```
+          -----------------------------------------------------------------
+   0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+          -----------------------------------------------------------------
+   ```
+   represents 2682257408<sub>10</sub> in unsigned integers, -1612709888<sub>10</sub> in signed integers, or -9.48676900925e-20 in floating-point numbers. _Note that the last number is an example of a short-hand representation of scientific notation. The `e-20` means * 10<sup>-20</sup>._ So, data types are important to distinguish between different interpretation of binary patterns in memory.   
+4. Booleans are an interesting case. While a single bit can represent a boolean (0 for `false` and 1 for `true`), memories cannot manipulate (read or write) single bits. So, booleans are represented either by bytes, which are the smallest addressable units of memory, or words, which are the most efficient memory unit. Very often, data that are narrower than words are `[<cept>]`_word-aligned_ (meaning they are stored in words, with any extra bits set to zero). For example, here is how 4 word-aligned booleans will look in memory (the first two are `false` and the last two are `true`):
+   ```
+          -----------------------------------------------------------------
+   0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+          -----------------------------------------------------------------
+   0b0004 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+          -----------------------------------------------------------------
+   0b0008 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+          -----------------------------------------------------------------
+   0b000c |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+          -----------------------------------------------------------------
+   ```
+   Notice the addresses. They are 0<sub>10</sub>, 4<sub>10</sub>, 8<sub>10</sub>, and 12<sub>10</sub>, because each boolean is 4 bytes wide.  
+5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]`, if the micro:bit uses word alignment.
+6. 
 Composite types: strings, objects (only data fields).  
 Arrays of any type.  
-
-Data type and interpretation of bit patterns!  
 
 Program storage and memory:  
   - Processes: activated programs
   - Functions and class methods
+  - Virtual tables  
   - Von Neumann (Princeton) vs Harvard architecture
 
 ##### Fixed width revisited
@@ -116,6 +148,7 @@ _What's in the firmware of the micro:bit?_
 
 ##### Memory management
 
+- lower levels of the software stack.
 - Keep the CPU supplied with work
 - Hierarchy
   - size, speed, cost
