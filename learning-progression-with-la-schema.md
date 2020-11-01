@@ -122,9 +122,9 @@ The following sketch illustrates how memory is accessed:
 <img src="images/memory-access.png" alt="Memory access" width="600" />  
 
 Things to notice:
-1. When writing a single bit or a single byte, we do not need address lines.  
-2. The control line determines if the access is for reading (R) or writing (W). This is usually a single line (that is, 1 bit).    
-3. The data lines carry the value to be written or the value read, depending on the control line. It is as wide as there are bits (either 1 or 8 on the sketch).  
+1. The control line determines if the access is for reading (R) or writing (W). This is usually a single line (that is, 1 bit).    
+2. The data lines carry the value to be written or the value read, depending on the control line. It is as wide as there are bits (either 1 or 8 on the sketch).  
+3. When accessing a single bit or a single byte, we do not need address lines.  
 4. The address lines carry the value of the address. They are as many as necessary. On the bottom of the sketch, we have 8 bytes, each of which can be read or written independently. For this to happen, it needs to be `[<cept>]`_exclusively_ selected (that is, it and only it is selected, with the others deselected). For 4 different selector lines (one for each of the bytes), we can have a 2-bit address. Why? Because 4 different numbers can be represented with 2 bits (`0b00`, `0b01`, `0b10`, and `0b11`). The `[<cept>]`_2-to-4 decoder_ is a circuit which performs the following translation:
 
 Address (2 bits) | Selector (4 bits)
@@ -136,21 +136,9 @@ Address (2 bits) | Selector (4 bits)
 
 A line is selected when it carries a value of 1 and deselected when it carries a value of 0.  
 
-**TODO: Sketch "Address and data lines".**  
+**Question 2.1.1:** How many different selector lines can we control (that is, decode) with a 4-bit address?  
 
-Addresses, references, and pointers.  
-
-Tradeoff between addressing granularity and hardware constraints (cost)
-
-Encoders and decoders **TODO: question**
-
-**TODO: Sketch "Bit, byte, and word addressing".**
-
-Why byte? 
-  - Characters, ASCII, Unicode, etc. 
-  - Programs are not stored in Unicode!   
-
-More on word in later steps.
+**TODO:** Addresses, references, and pointers.  
 
 ##### Types of memory
 [[toc](#table-of-contents)]
