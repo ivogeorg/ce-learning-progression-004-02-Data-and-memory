@@ -249,7 +249,15 @@ A line is selected when it carries a value of 1 and deselected when it carries a
       
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
 
-7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a `Buffer`.  
+7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a [`Buffer`](https://makecode.microbit.org/types/buffer).  
+   1. [`Int32LE`](https://makecode.microbit.org/types/buffer/number-format):  
+      - `-1` for none  
+      - buffer of depth 47 for offsets in range [0, 46], to stay in range  
+   2. **TODO:** How does `Buffer` work?
+      - How big is it?  
+      - Are gaps handled gracefully?  
+      - Is there automatic expansion?  
+      - Can positions be `undefined`?  
 
 
 #### 3. Present 
