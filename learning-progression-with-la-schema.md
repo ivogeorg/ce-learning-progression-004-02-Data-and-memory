@@ -203,7 +203,7 @@ _What's in the firmware of the micro:bit?_
 - Keep the CPU supplied with work
 - Hierarchy
   - size, speed, cost
-  - caching  
+  - caching as a fundamental algorithm  
 - Memory manager  
   - access (C/C++ vs other languages)
   - smart pointers
@@ -236,7 +236,7 @@ _What's in the firmware of the micro:bit?_
    3. Create an index array for the second column.  
       <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="600" />  
 
-5. `[<lernact-prac>]`**[Optional super challenge, max 16 extra step points]** **TODO** Array-based malloc simulation ([program draft](https://github.com/ivogeorg/ce-learning-progressions-selected-programs/blob/master/malloc-simulation.js):
+5. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** Array-based malloc simulation ([program draft](https://github.com/ivogeorg/ce-learning-progressions-selected-programs/blob/master/malloc-simulation.js):
    1. Byte-array simulation.
    2. Object memory footprint.  
    3. Memory alignment.  
@@ -244,7 +244,10 @@ _What's in the firmware of the micro:bit?_
    4. Calculation of array element addresses.  
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
       
-6. `[<lernact-prac>]`**[Optional challenge, max 3 extra step points]** **TODO** Working with `Buffer` and explicit numerical types.  
+6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
+
+7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Fibonacci with memoisation/caching using a `Buffer`.  
+
 
 #### 3. Present 
 [[toc](#table-of-contents)]
