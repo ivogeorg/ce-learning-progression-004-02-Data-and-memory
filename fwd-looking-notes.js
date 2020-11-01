@@ -1,3 +1,5 @@
+### For staff use
+
 6. `[<lernact-prac>]`**[Optional challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
 **TODO: Resources**  
