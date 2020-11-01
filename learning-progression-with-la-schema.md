@@ -111,7 +111,40 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
 ##### Fixed width revisited
 [[toc](#table-of-contents)]
 
-[Smaller integer types](https://makecode.com/language)  
+The MakeCode environment silently lumps both integer and floating-point numbers in its `number` type. _Note that the type [`Number`](https://makecode.microbit.org/types/number) (note the capitalized type name) is a 32-bit 2s-complement signed integer, and its support is not very stable at present. Most importantly, the two types `number` and `Number` are not compatible and/or mutually interconvertible, at least in MakeCode, where the [JavaScript-like language we are using to program the micro:bit](https://makecode.com/language) is only a **subset** of TypeScript. For example:_
+```javascript
+// Example 2.1.1
+
+let f : number = 3.4
+basic.showNumber(f)  // this works fine as showNumber takes a `number`-typed argument
+
+let f : Number = 3
+basic.showNumber(f)  // this errors out with message "Argument of type 'Number' is not assignable to parameter of type 'number'."
+```
+So, we can use `Number` variables in our programs, but we cannot use them as arguments to functions which have `number` parameters.
+
+TypeScript (in contrast to JavaScript) supports unsigned and signed integer types with explicit fixed bit-widths:
+```javascript
+// Example 2.1.2
+
+// Unsigned integer types
+let a : uint8                     // range 0 to 255
+let b : uint16                    // range 0 to 65536
+let c : uint32                    // range 0 to 4294967295
+
+// Signed integer types
+let x : int8                      // range -128 to 127
+let y : int16                     // range -32768 to 32767
+let z : int32                     // range -2147483648 to 2147483647
+```
+Note the following:
+1. The ranges differ in correspondence to the bit width of the type.  
+2. The signed integers are 2s-complement, as can be seen from the fact that the negative integers are one more than the positive ones.  
+
+**TODO**
+1. No arrays, only buffers.  
+2. Buffers like objects, with explicit offsets.  
+3. The fullest control over memory layout!  
 [`Buffer`](https://makecode.microbit.org/types/buffer)  
 
 
@@ -176,7 +209,9 @@ _What's in the firmware of the micro:bit?_
   - smart pointers
   - garbage collection
 - Processes and main memory  
-- Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
+- TODO:
+  - Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
+  - v1.5 vs v2
 
 
 #### 2. Apply
