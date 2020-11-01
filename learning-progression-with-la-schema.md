@@ -145,7 +145,8 @@ Note the following:
 1. No arrays, only buffers.  
 2. Buffers like objects, with explicit offsets.  
 3. The fullest control over memory layout!  
-[`Buffer`](https://makecode.microbit.org/types/buffer)  
+   - [`Buffer`](https://makecode.microbit.org/types/buffer)  
+   - [Number formats](https://makecode.microbit.org/types/buffer/number-format)  
 
 
 ##### Addressing  
@@ -175,43 +176,45 @@ A line is selected when it carries a value of 1 and deselected when it carries a
 ##### References and pointers
 [[toc](#table-of-contents)]
 
-**TODO:** Addresses, references, and pointers.  
+**TODO:**
+1. Addresses.  
+2. References (arrays, objects).  
+3. Pointers (C/C++) - explicit address type.  
 
 ##### Types of memory
 [[toc](#table-of-contents)]
 
-Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
-
-Array address calculation example with sketch.  
-
-Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
-
-ROM
-
-Flash, both RAM and ROM. micro:bit stores programs in Flash. It is written during the programming of the device ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)). The micro:bit progam (i.e. the HEX file) is written to the Flash ROM. 
-
-https://www.google.com/search?q=is+flash+rom+or+ram
-
-Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)
-
-_What's in the firmware of the micro:bit?_
+**TODO:**  
+1. Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
+2. **TODO: Sketch** Array address calculation example with sketch.  
+3. Random access. RAM.  
+4. Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
+5. ROM.  
+6. Flash:
+   1. Acts as ROM for micro:bit.  
+   2. Programmable ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)).  
+   3. The micro:bit progam (i.e. the HEX file) is written to the Flash ROM.  
+7. https://www.google.com/search?q=is+flash+rom+or+ram  
+8. Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)  
+9. _What's in the firmware of the micro:bit?_  
 
 ##### Memory management
 [[toc](#table-of-contents)]
 
-- lower levels of the software stack.
-- Keep the CPU supplied with work
-- Hierarchy
-  - size, speed, cost
-  - caching as a fundamental algorithm  
-- Memory manager  
-  - access (C/C++ vs other languages)
-  - smart pointers
-  - garbage collection
-- Processes and main memory  
-- TODO:
-  - Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
-  - v1.5 vs v2
+**TODO:**  
+1. Memory management usually in lower levels of the software stack (device abstraction, OS). 
+   - Where?  
+     - Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
+     - v1.5 vs v2   
+2. The role of memory is to keep the CPU supplied with work (which is orders of magnitude faster than it).  
+3. Hierarchy:  
+   - pyramid: size, speed, cost
+   - caching as a fundamental algorithm  
+4. Memory manager  
+   - access (C/C++ vs other languages)
+   - smart pointers
+   - garbage collection
+5. Processes and main memory.  
 
 
 #### 2. Apply
@@ -246,7 +249,7 @@ _What's in the firmware of the micro:bit?_
       
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
 
-7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** Fibonacci with memoisation/caching using a `Buffer`.  
+7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a `Buffer`.  
 
 
 #### 3. Present 
