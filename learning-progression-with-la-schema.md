@@ -13,6 +13,7 @@ Table of Contents
         * [Memory layout](#memory-layout)
         * [Fixed width revisited](#fixed-width-revisited)
         * [Addressing](#addressing)
+        * [References and pointers](#references-and-pointers)
         * [Types of memory](#types-of-memory)
         * [Memory management](#memory-management)
       * [2\. Apply](#2-apply)
@@ -137,6 +138,9 @@ Address (2 bits) | Selector (4 bits)
 A line is selected when it carries a value of 1 and deselected when it carries a value of 0.  
 
 **Question 2.1.1:** How many different selector lines can we control (that is, decode) with a 4-bit address?  
+
+##### References and pointers
+[[toc](#table-of-contents)]
 
 **TODO:** Addresses, references, and pointers.  
 
