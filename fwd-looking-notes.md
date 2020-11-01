@@ -7,6 +7,10 @@ Originally in Step 004-02
 #### 2. Apply
 1. `[<lernact-prac>]`**[Optional challenge, max ? extra step points]** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array). Resources:    
    1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript) from [Web dev tutorials](https://scotch.io/).  
+      1. Objects:
+         1. [Working with objects (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects).  
+         2. [TypeScript Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html).  
+         3. [MakeCode Langauges](https://makecode.com/language).  
    2. [Closures in TS](https://basarat.gitbook.io/typescript/recap/closure) (from [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/)).    
    3. Fibonacci numbers:  
       1. ViHart videos:  
