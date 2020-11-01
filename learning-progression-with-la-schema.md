@@ -11,8 +11,9 @@ Table of Contents
       * [1\. Study](#1-study)
         * [Arrays and memory](#arrays-and-memory)
         * [Memory layout](#memory-layout)
+        * [Fixed width revisited](#fixed-width-revisited)
         * [Addressing](#addressing)
-        * [Random access](#random-access)
+        * [Types of memory](#types-of-memory)
         * [Memory management](#memory-management)
       * [2\. Apply](#2-apply)
       * [3\. Present](#3-present)
@@ -31,29 +32,85 @@ This progression introduces fundamentals of computing, including the binary syst
 ##### Arrays and memory
 [[toc](#table-of-contents)]
 
-Arrays have indices. They are the closest analog of computer memory. Memory is organized as a large array with addresses. Each byte (8-bits) has an address, starting from 0x0 up to the highest address depending on the size of the memory.
+`[<lernact-rd>]`Arrays are a ordered collections of data elements, which allow individual elements to be retrieved by their index in the sequence. The index range is [0, N-1], where N is the total number of array elements. Arrays are a close analog to computer memory. Memory is organized as a large array, and the indices of the elements are called `[<cept>]`_addresses_. Each `[<cept>]`_byte_ (8-bits) has an address, starting from 0b000 up to the highest address depending on the size of the memory.
 
-What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program).
+What do we mean by "memory"? Memory is a physical device capable of keeping a dynamic record of the `[<cept>]`_state_ of a `[<cept>]`_process_ (meaning, an activated program). The state includes all the data the process is working with. For a computer to execute a program, the program itself and the program's data needs to be in the computer's memory.
 
+Here's a very simple sketch of memory, showing all the bits (shown as boxes) in 4 consecutive bytes with addresses shown on the left:
 ```
        -----------------
-0x0000 | | | | | | | | |
+0b0000 |0|1|1|1|0|0|0|0|
        -----------------
-0x0001 | | | | | | | | |
+0b0001 |1|1|0|1|0|1|1|0|
        -----------------
-0x0002 | | | | | | | | |
+0b0010 |1|0|0|0|1|1|0|1|
        -----------------
-0x0003 | | | | | | | | |
+0b0011 |0|0|1|1|0|0|1|0|
        -----------------
 ```
+Notice the _fixed bit width_ of data in memory.
+
+Memory has only two basic functions, `[<cept>]`_Read_ and `[<cept>]`_Write_.
+
+The most important property of memory is `[<cept>]`_speed_, in both reading and writing. The second most important property of memory is `[<cept>]`_capacity_. The more memory a computer has, the better. In the age of `[<cept>]`_big data_, memory is never enough, often by `[<cept>]`_orders of magnitude_.
+
 ##### Memory layout  
 [[toc](#table-of-contents)]
 
-Primitive types: integers, floats, booleans.  
-Composite types: strings, objects.  
-Arrays of any type.  
+The simplicity of memory devices shift the burden of efficient usage to the software stack. Let's list some of the computational artifacts that we write to and read from memory:
+1. We know that memory is `[<cept>]`_byte-addressed_. Any byte-sized data fits very efficiently into memory. Here are two examples:
+   1. [ASCII characters](http://www.asciitable.com/), which are a standard character set used by **all programming languages**, are 7-bits long. This character set is `[<cept>]`_fixed-length_, where length referes to the number of bytes one character takes. They all take one byte. In contrast, `[<cept>]`[_Unicode_](https://home.unicode.org/), which is the worldwide standard for representing all symbolic systems used by humanity, including [emoji](https://unicode.org/emoji/charts/full-emoji-list.html), due to its size, has adopted a `[<cept>]`_variable-length_ format.  
+   2. `[<cept>]`_Machine learning (ML)_ has become an ubiquitous technology and is utilized in all computing environments, from large data centers to the smallest resource-constrained `[<cept>]`_Internet-of-Things (IoT)_ devices on the `[<cept>]`_edge_ of the Internet. ML is a `[<cept>]`_memory-heavy_ (meaining it uses a lot of memory) technology, but in the latter case, memory is severly constrained. The computational artifacts that ML produces are called `[<cept>]`_models_. These models contain the learned knowledge which machines use to solve the problems they were `[<cept>]`_trained_ for. The models are large and complex `[<cept>]`_data structures_. To be able to use such a model on IoT devices, it has to be `[<cept>]`_compressed_ to fit in their limited memory. One of the techniques is `[<cept>]`_byte-packing_, which reduces the numerical data of the model to a `[<cept>]`_byte array_.  
+2. Except for memory-constrained applications, data is usually represented in `[<cept>`]_words_. Today a word is usually 4 bytes, or 32 bits. All `[<cept>]`_primitive data types_ are represented in words, meaning:
+   1. They are read from and written to memory as words.  
+   2. The processor works with word-sized `[<cept>]`_operands_ (e.g. for addition `a + b`, where `a` and `b` are the operands).  
+   3. Because both memory and processor work with words, the computer is optimized to work with words, thus making the word-sized data the most efficient to manipulate.  
+3. The primitive types that we have encountered are:
+   1. Unsigned integers.  
+   2. Signed integers.  
+   3. Single-precision floating-point numbers.  
+   4. Double-precision floating-point numbers (which use 2 words instead of one).  
+   5. Booleans.  
+      All of these look like bit-patterns in binary. For example, the bit pattern:
+      ```
+             -----------------------------------------------------------------
+      0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+             -----------------------------------------------------------------
+      ```
+      represents 2682257408<sub>10</sub> in unsigned integers, -1612709888<sub>10</sub> in signed integers, or -9.48676900925e-20 in floating-point numbers. _Note that the last number is an example of a short-hand representation of scientific notation. The `e-20` means * 10<sup>-20</sup>._ So, data types are important to distinguish between different interpretation of binary patterns in memory.   
+4. Booleans are an interesting case. While a single bit can represent a boolean (0 for `false` and 1 for `true`), memories cannot manipulate (read or write) single bits. So, booleans are represented either by bytes, which are the smallest addressable units of memory, or words, which are the most efficient memory unit. Very often, data that are narrower than words are `[<cept>]`_word-aligned_ (meaning they are stored in words, with any extra bits set to zero). For example, here is how 4 word-aligned booleans will look in memory (the first two are `false` and the last two are `true`):
+   ```
+          -----------------------------------------------------------------
+   0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+          -----------------------------------------------------------------
+   0b0004 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+          -----------------------------------------------------------------
+   0b0008 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+          -----------------------------------------------------------------
+   0b000c |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|
+          -----------------------------------------------------------------
+   ```
+   Notice the addresses. They are 0<sub>10</sub>, 4<sub>10</sub>, 8<sub>10</sub>, and 12<sub>10</sub>, because each boolean is 4 bytes wide.  
+5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]` provided the micro:bit uses word alignment for booleans.
+6. Object data is stored in memory blocks with the cumulative size of the class fields. The following sketch shows this for some familar classes from previous steps:
+   <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
+7. Of course, program code is also stored in memory. Here we need to distinguish among the following:
+   1. Program source code is stored as regular files in the file system, usually on drives, known as `[<cepc>]`_secondary storage_. For example, `screensavers.js` is a source file.    
+   2. Program `[<cept>]`_compiled_ binaries are stored as regular (though non-human readable) files, usually in _secondary storage_. For example, `microbit-screensavers.hex` is a compiled binary.  
+   3. When a program is activated for execution, and becomes a `[<cept>]`_process_, the following happens:
+      1. A process metadata block is created for the program. This contains addresses, identification numbers, and miscellaneous process management data.    
+      2. The program's compiled binaries are brought to `[<cept>]`_main memory_ (aka `[<cept>]`_primary storage_, the memory we have been talking about so far) in a `[<cept>]`_code segment_.  
+      3. The program's data is also brought to main memory, in a data segment.  
+      4. Additional memory for the program's execution is allocated and assigned to it.  
+      5. Using the process metadata block, the process is put on a `[<cept>]`_queue_ (which is just a list where elements are added from one end and removed from the other) of processes ready to execute.  
+8. Just as variables are named data, functions and class methods are named code. When a function or method is called, the process knows where the code is. For class methods, they are not stored for each object, but only once for the class. When a method is called on an object, the class code is executed.
 
-Functions.  
+##### Fixed width revisited
+[[toc](#table-of-contents)]
+
+[Smaller integer types](https://makecode.com/language)  
+[`Buffer`](https://makecode.microbit.org/types/buffer)  
+
 
 ##### Addressing  
 [[toc](#table-of-contents)]
@@ -62,20 +119,52 @@ Functions.
 
 Addresses, references, and pointers.  
 
-##### Random access
+Tradeoff between addressing granularity and hardware constraints (cost)
+
+Encoders and decoders **TODO: question**
+
+**TODO: Sketch "Bit, byte, and word addressing".**
+
+Why byte? 
+  - Characters, ASCII, Unicode, etc. 
+  - Programs are not stored in Unicode!   
+
+More on word in later steps.
+
+##### Types of memory
 [[toc](#table-of-contents)]
 
 Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
 
 Array address calculation example with sketch.  
 
-##### Memory management
+Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
 
+ROM
+
+Flash, both RAM and ROM. micro:bit stores programs in Flash. It is written during the programming of the device ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)). The micro:bit progam (i.e. the HEX file) is written to the Flash ROM. 
+
+https://www.google.com/search?q=is+flash+rom+or+ram
+
+Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)
+
+_What's in the firmware of the micro:bit?_
+
+##### Memory management
+[[toc](#table-of-contents)]
+
+- lower levels of the software stack.
 - Keep the CPU supplied with work
 - Hierarchy
   - size, speed, cost
   - caching  
 - Memory manager  
+  - access (C/C++ vs other languages)
+  - smart pointers
+  - garbage collection
+- Processes and main memory  
+- Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
+
 
 #### 2. Apply
 [[toc](#table-of-contents)]
@@ -103,13 +192,28 @@ Array address calculation example with sketch.
    1. Byte-array simulation.
    2. Object memory footprint.  
    3. Memory alignment.  
+      1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
    4. Calculation of array element addresses.  
       <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
       
-6. `[<lernact-prac>]`**[Optional super challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
+6. `[<lernact-prac>]`**[Optional challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
 
-#### 3. Present
+**TODO: Resources**  
+1. [Memoization in JS](https://scotch.io/tutorials/understanding-memoization-in-javascript) from [Web dev tutorials](https://scotch.io/).  
+2. [Closures in TS](https://basarat.gitbook.io/typescript/recap/closure) (from [TypeScript Deep Dive](https://basarat.gitbook.io/typescript/).    
+3. Fibonacci numbers:
+   1. ViHart videos:
+      1. [Video 1](https://www.youtube.com/watch?v=ahXIMUkSXX0) 
+      2. [Video 2](https://www.youtube.com/watch?v=lOIP_Z_-0Hs)  
+      3. [Video 3](https://www.youtube.com/watch?v=14-NdQwKz9w&t=305s)  
+   2. [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).  
+4. How to use this to efficiently arrive at a large result without maxing out the memory of the micro:bit?     
+5. Example with closures for computing binary numbers?  
+
+7. `[<lernact-prac>]`**[Optional challenge, max 3 extra step points]** **TODO** Working with `Buffer` and explicit numerical types.  
+
+#### 3. Present 
 [[toc](#table-of-contents)]
 
 In the [programs](programs) directory:
