@@ -207,7 +207,6 @@ _What's in the firmware of the micro:bit?_
    3. Memory alignment.  
       1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
    4. Calculation of array element addresses.  
-      <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
       
 6. `[<lernact-prac>]`**[Optional challenge, max ? extra step points]** **TODO** Caching task (e.g. function-result cache to avoid pre-computing; amortized computation with backing store, say array)  
