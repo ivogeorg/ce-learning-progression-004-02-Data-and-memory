@@ -93,7 +93,9 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
    Notice the addresses. They are 0<sub>10</sub>, 4<sub>10</sub>, 8<sub>10</sub>, and 12<sub>10</sub>, because each boolean is 4 bytes wide.  
 5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]` provided the micro:bit uses word alignment for booleans.
 6. Object data is stored in memory blocks with the cumulative size of the class fields. The following sketch shows this for some familar classes from previous steps:
+
    <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
+
 7. Of course, program code is also stored in memory. Here we need to distinguish among the following:
    1. Program source code is stored as regular files in the file system, usually on drives, known as `[<cepc>]`_secondary storage_. For example, `screensavers.js` is a source file.    
    2. Program `[<cept>]`_compiled_ binaries are stored as regular (though non-human readable) files, usually in _secondary storage_. For example, `microbit-screensavers.hex` is a compiled binary.  
@@ -114,6 +116,25 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
 
 ##### Addressing  
 [[toc](#table-of-contents)]
+
+The following sketch illustrates how memory is accessed:
+
+<img src="images/memory-access.png" alt="Memory access" width="600" />  
+
+Things to notice:
+1. When writing a single bit or a single byte, we do not need address lines.  
+2. The control line determines if the access is for reading (R) or writing (W). This is usually a single line (that is, 1 bit).    
+3. The data lines carry the value to be written or the value read, depending on the control line. It is as wide as there are bits (either 1 or 8 on the sketch).  
+4. The address lines carry the value of the address. They are as many as necessary. On the bottom of the sketch, we have 8 bytes, each of which can be read or written independently. For this to happen, it needs to be `[<cept>]`_exclusively_ selected (that is, it and only it is selected, with the others deselected). For 4 different selector lines (one for each of the bytes), we can have a 2-bit address. Why? Because 4 different numbers can be represented with 2 bits (`0b00`, `0b01`, `0b10`, and `0b11`). The `[<cept>]`_2-to-4 decoder_ is a circuit which performs the following translation:
+
+Address (2 bits) | Selector (4 bits)
+--- | ---
+00 | 0001
+01 | 0010
+10 | 0100
+11 | 1000
+
+A line is selected when it carries a value of 1 and deselected when it carries a value of 0.  
 
 **TODO: Sketch "Address and data lines".**  
 
