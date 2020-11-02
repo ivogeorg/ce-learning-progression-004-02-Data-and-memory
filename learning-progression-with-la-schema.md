@@ -176,10 +176,18 @@ A line is selected when it carries a value of 1 and deselected when it carries a
 ##### References and pointers
 [[toc](#table-of-contents)]
 
-**TODO:**
-1. Addresses.  
-2. References (arrays, objects).  
-3. Pointers (C/C++) - explicit address type.  
+Now that we know about memory addresses, we can recall the short mention of references from a previous step. References are the programmatic equivalents of addresses, a sort of "invisible addresses". When arguments are passed to a function, they are either copied (pass `[<cept>]`_by value_) or referenced (pass `[<cept>]`_by reference_). To the programmer, this difference is invisible in most languages, JavaScript included. The difference is implemented based on the type of the argument: pass by value for primitive types, pass by reference for arrays and objects. While the programmer does not see the addresses themselves, reference-type `[<cept>]`_identifiers_ (meaning variable and function names) are matched to memory addresses when a program is activated and executed.
+
+Some languages, most notably C and C++, have explicit reference types, called `[<cept>]`_pointers_. Here is a small example:
+```c
+// Example 2.1.3
+
+int i = 6;                                                 // just a 32-bit signed integer variable
+int *ptr = &i;                                             // a pointer variable, also 4 bytes, holding the address of i
+
+printf("Integer %d, pointer dereference %d\n", i, *ptr);   // a pointer can be dereferenced to show the value at the address it holds
+```
+Thus, languages like C and C++ give very low-level control over program memory than most other languages, including Java and JavaScript, where memory operations are invisible to the programmer and out if their direct control.
 
 ##### Types of memory
 [[toc](#table-of-contents)]
