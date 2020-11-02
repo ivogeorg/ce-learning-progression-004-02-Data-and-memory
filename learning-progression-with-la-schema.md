@@ -317,7 +317,7 @@ This is because of the following crucial roles of memory in a computer:
    
       <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="800" />  
 
-5. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** By virtue of most operating systems and machine learning platforms being written in C/C++, the most popular memory management code is the [`malloc`+`free`](https://en.cppreference.com/w/c/memory/malloc) duo from the [C Standard Library](https://en.wikipedia.org/wiki/C_standard_library). We will simulate their function. Take a look at the [memory layout sketch](#memory-layout) and the following code:
+5. `[<lernact-prac>]`**[Optional super challenge, max 16 extra step points]** By virtue of most operating systems and machine learning platforms being written in C/C++, the most popular memory management code is the [`malloc`+`free`](https://en.cppreference.com/w/c/memory/malloc) duo from the [C Standard Library](https://en.wikipedia.org/wiki/C_standard_library). We will simulate their function. Take a look at the [memory layout sketch](#memory-layout) and the following code:
    ```javascript
    // memory footprint in bits
    enum MemoryFootprint {
@@ -330,11 +330,13 @@ This is because of the following crucial roles of memory in a computer:
    }
 
    // heap : assume a byte array (i.e. each array index is the address of a byte)
-   let heap : MemoryFootprint[] = []
+   let heap : number[] = []
    const HEAP_BYTE_SIZE : number = 50
-   for (let i=0; i<HEAP_BYTE_SIZE*8; i++) heap.push(MemoryFootprint.DEADBEEF)  // "zero out"
+   
+   // "zero-out" the heap
+   for (let i=0; i<HEAP_BYTE_SIZE; i++) heap.push(0)
 
-   // memory management (allocations)
+   // heap management (allocations)
    enum Alloc { StartAddr = 0, NumBytes }
    let alloc : Alloc[] = []
 
@@ -354,27 +356,18 @@ This is because of the following crucial roles of memory in a computer:
    ```
    1. We define an enumerated type `MemoryFootprint` to define how much memory (in bits) is taken to store the data of an object of each of several screensaver types. The sketch shows this visually.    
    2. We declare a `[<cept>]`_heap_ of free memory available for dynamic allocation (meaning during process execution). This is the memory block the functions `malloc` and `free` will manage, fullfilling requests from memory clients. We assume that `heap` is an array of bytes.    
-   2. The function `malloc` (standing for _memory allocate_) finds a suitable place to store the number of bytes in its argument, marks them as _unavailable_ (e.g. store a `1` in the heap "bytes") and returns the address to the caller. The address is the heap array index of the first "byte" in the new allocation.
-   3. The function `free` takes the address of the allocation and marks the allocated bytes as _available_ (e.g. by setting the "bytes" to zero).  
-   4. Note that the size of each allocation is not passed as an argument to `free`, and is only present in `malloc`. This means that we need to keep track of the size (in bytes) of each allocation. This is the function of the `alloc` array. The following sketch shows the effect of several calls to `malloc` and `free`: 
+   2. The function `malloc` (standing for _memory allocate_) finds a suitable place to store the number of bytes in its argument, marks them as _unavailable_ (e.g. store a `1` in the heap "bytes") and returns the address to the caller. The address is the heap array index of the first "byte" in the new allocation. 
+   3. Notice that to `malloc` memory is just blocks of bytes. It does not know about object types or their memory footprint. The `MemoryFootprint` type is simply provided for readability in the `malloc` calls (e.g. "I want an array of 5 `Raindrop`-s" translates to `5 * MemoryFootprint.Raindrop` as the argument to `malloc`).   
+   4. The function `free` takes the address of the allocation and marks the allocated bytes as _available_ (e.g. by setting the "bytes" to zero).  
+   5. Note that the size of each allocation is not passed as an argument to `free`, and is only present in `malloc`. This means that we need to keep track of the size (in bytes) of each allocation. This is the function of the `alloc` array. The following sketch shows the effect of several calls to `malloc` and `free`: 
    
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="800" /> 
      
       Notice that, because of the unpredictable sequence of allocations and free-ups an executing process generates, the heap becomes `[<cept>]`_fragmented_. There are two `[<cept>]`_policies_ which are used to look for a free "hole" to fit a new allocation, `[<cept>]`_first-fit_ (which finds the first hole that is large enough w/o regard for fragmentation) and `[<cept>]`_best-fit_ (which finds the first hole that is as large as the allocation but, if possible, no larger).  
-   5. Use the scenarios in the sketch to compose a sequence of `malloc` and `free` calls to test your code.  
-   6. To provide visual evidence that your code is working, notice that the heap is declared to be 50 "bytes", and write code to show on the 5x5 LED matrix whether each 2-byte block is free (dark LED) or occupied (lit LED).  
+   6. Use the scenarios in the sketch to compose a sequence of `malloc` and `free` calls to test your code.  
+   7. To provide visual evidence that your code is working, notice that the heap is declared to be 50 "bytes", and write code to show on the 5x5 LED matrix whether each 2-byte block is free (dark LED) or occupied (lit LED).  
       
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** Take your program from 2.2.5 and rewrite it using a `Buffer` for the heap.    
-
-7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a [`Buffer`](https://makecode.microbit.org/types/buffer).  
-   1. [`Int32LE`](https://makecode.microbit.org/types/buffer/number-format):  
-      - `-1` for none  
-      - buffer of depth 47 for offsets in range [0, [46](http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html)], to stay in range  
-   2. **TODO:** How does `Buffer` work?
-      - How big is it?  
-      - Are gaps handled gracefully?  
-      - Is there automatic expansion?  
-      - Can positions be `undefined`?  
 
 
 #### 3. Present 
@@ -385,15 +378,18 @@ In the [programs](programs) directory:
 2. Add your program from 2.2.3 with filename `microbit-program-2-2-3.js`.  
 3. Add your program from 2.2.4 with filename `microbit-program-2-2-4.js`.  
 4. Add your program from 2.2.5 with filename `microbit-program-2-2-5.js`.  
+4. Add your program from 2.2.6 with filename `microbit-program-2-2-6.js`.  
 
 In the [Lab Notebook](README.md):
 
 1. Answer the questions and show your work for 2.2.1 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary. 
 2. Link to the program from 2.2.2.  
 3. Link to a demo video showing the execution of the program from 2.2.2.  
-2. Link to the program from 2.2.3.  
-3. Link to a demo video showing the execution of the program from 2.2.3.  
-2. Link to the program from 2.2.4.  
-3. Link to a demo video showing the execution of the program from 2.2.4.  
-2. Link to the program from 2.2.5.  
-3. Link to a demo video showing the execution of the program from 2.2.5.  
+4. Link to the program from 2.2.3.  
+5. Link to a demo video showing the execution of the program from 2.2.3.  
+6. Link to the program from 2.2.4.  
+7. Link to a demo video showing the execution of the program from 2.2.4.  
+8. Link to the program from 2.2.5.  
+9. Link to a demo video showing the execution of the program from 2.2.5.  
+10. Link to the program from 2.2.6.  
+11. Link to a demo video showing the execution of the program from 2.2.6.  
