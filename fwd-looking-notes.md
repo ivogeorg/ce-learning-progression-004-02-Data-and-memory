@@ -20,3 +20,13 @@ Originally in Step 004-02
       2. [Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_number).  
    4. How to use this to efficiently arrive at a large result without maxing out the memory of the micro:bit?     
    5. Example with closures for computing binary numbers?  
+7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a [`Buffer`](https://makecode.microbit.org/types/buffer).  
+   1. [`Int32LE`](https://makecode.microbit.org/types/buffer/number-format):  
+      - `-1` for none  
+      - buffer of depth 47 for offsets in range [0, [46](http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html)], to stay in range  
+   2. **TODO:** How does `Buffer` work?
+      - How big is it?  
+      - Are gaps handled gracefully?  
+      - Is there automatic expansion?  
+      - Can positions be `undefined`?  
+
