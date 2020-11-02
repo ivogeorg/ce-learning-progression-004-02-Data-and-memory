@@ -382,14 +382,15 @@ In the [programs](programs) directory:
 
 In the [Lab Notebook](README.md):
 
-1. Answer the questions and show your work for 2.2.1 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary. 
-2. Link to the program from 2.2.2.  
-3. Link to a demo video showing the execution of the program from 2.2.2.  
-4. Link to the program from 2.2.3.  
-5. Link to a demo video showing the execution of the program from 2.2.3.  
-6. Link to the program from 2.2.4.  
-7. Link to a demo video showing the execution of the program from 2.2.4.  
-8. Link to the program from 2.2.5.  
-9. Link to a demo video showing the execution of the program from 2.2.5.  
-10. Link to the program from 2.2.6.  
-11. Link to a demo video showing the execution of the program from 2.2.6.  
+1. Answer question 2.1.1.  
+2. Answer the questions and show your work for 2.2.1 in well-formatted Markdown, including whatever images, tables, or other graphical elements you find necessary. 
+3. Link to the program from 2.2.2.  
+4. Link to a demo video showing the execution of the program from 2.2.2.  
+5. Link to the program from 2.2.3.  
+6. Link to a demo video showing the execution of the program from 2.2.3.  
+7. Link to the program from 2.2.4.  
+8. Link to a demo video showing the execution of the program from 2.2.4.  
+9. Link to the program from 2.2.5.  
+10. Link to a demo video showing the execution of the program from 2.2.5.  
+11. Link to the program from 2.2.6.  
+12. Link to a demo video showing the execution of the program from 2.2.6.  
