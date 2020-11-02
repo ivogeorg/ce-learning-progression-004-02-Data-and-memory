@@ -262,10 +262,58 @@ This is because of the following crucial roles of memory in a computer:
 
 3. `[<lernact-prac>]`Write a function `hex2Bin(hex : string) : string` which takes a hexadecimal integer string and returns the corresponding binary integer string (e.g. for input `0x0F`, the output is `0b00001111`). Use prefixes.  
 
-4. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]**  **TODO** Creating an index to a database:
-   1. 2D array.  
-   2. Array sorted by first column.  
-   3. Create an index array for the second column.  
+4. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** `[<cept>]`_Databases_ are large containers for data, usually organized in `[<cept>]`_tables_. Tables resemble multidimensional arrays with the important difference that different `[<cept>]`_columns_ may have different data types. One of the drawbacks of arrays and database tables is that sorting them in place is inefficient. It takes a lot of copying, consuming memory and processing time. So what do we do if we have a database table that is already sorted by, say, record identification number, and is too large to sort otherwise? How can we still get a column of interest in a sorted order? We create an `[<cept>]`_index_ on that database column, and leave the table records untouched. Take a look at the following code:
+   ```javascript
+   class Record {
+       _id : number
+       _word : string
+
+       constructor(id : number, word : string) {
+           this._id = id
+           this._word = word
+       }
+
+       get id() {
+           return this._id
+       }
+
+       set id(new_id : number) {
+           this._id = new_id
+       }
+
+       get word() {
+           return this._word
+       }
+
+       set word(new_word : string) {
+           this._word = new_word
+       }
+   }
+
+   let wordlist : string[] = ["tearful","watery","eyes","pump","halting","wonderful","wine","flesh","explain","heap","substantial","scare","coherent","amusing","settle","lyrical","copy","insurance","impress","frightening","produce","slope","abounding","spicy","futuristic","bedroom","teaching","throne","punish","macho","overjoyed","enjoy","cure","busy","well-made","energetic","crayon","mushy","flippant","things","rinse","steep","incandescent","past","concerned","hurt","terrific","decision","farm","birds"]
+
+   let records : Record[] = []
+
+   for (let i=0; i<wordlist.length; i++) records.push(new Record(randint(0, 10000), wordlist[i]))
+
+   // 1. sort by id
+   records.sort((value1 : Record, value2 : Record) : number => {
+       return value1.id() - value2.id()
+   })
+
+   basic.showString('OK')
+   basic.showNumber(records[0].id())
+   basic.showNumber(records[records.length-1].id())
+
+   // 2. create an index on word
+   let index : number[] = []
+
+   for (let i=0; i<records.length; i++) index.push(i)
+   ```
+   1. To simulate a database table, we declare a `Record` class with two fields of different type, and then we create an array or records.  
+   2. The identification numbers `id` are random integers. We sort the "table" by `id`. Note the declaration syntax for a non-default `sort` function, which involes declaring a [`compareFunction`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort).  
+   3. We can now create an index array for the second column `word`. It contains the _indices_ of the table array.  
+   4. You need to write the code to sort the index by `word`. The following sketch shows what you need to do:
    
       <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="800" />  
 
