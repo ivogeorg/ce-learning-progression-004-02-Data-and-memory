@@ -233,20 +233,17 @@ The micro:bit stores its programs in a different memory device, which is called 
 ##### Memory management
 [[toc](#table-of-contents)]
 
-**TODO:**  
-1. Memory management usually in lower levels of the software stack (device abstraction, OS). 
-   - Where?  
-     - Nordic app soc SDK, mbed (pre-v2.0), CODAL (v2.0)   
-     - v1.5 vs v2   
-2. The role of memory is to keep the CPU supplied with work (which is orders of magnitude faster than it).  
-3. Hierarchy:  
-   - pyramid: size, speed, cost
-   - caching as a fundamental algorithm  
-4. Memory manager  
-   - access (C/C++ vs other languages)
-   - smart pointers
-   - garbage collection
-5. Processes and main memory.  
+Memory management, for both RAM and ROM, is usually implemented in the lowest levels of the software stack, as shown in the familiar sketch:
+
+<img src="images/microbit-software-stack-02.png" alt="Memory management in the micro:bit software stack" width="400" />
+
+This is because of the following crucial roles of memory in a computer:
+1. **Isolation.** The memory regions of different processes have to be isolated, and this include no exposing memory management functions to the programmatic layer of the stack.  
+2. **Speed.** The processor of a computer runs much faster than the memory management mechanisms. Therefore, in order to keep the processor busy, the computer's memory is built as a hierarchy of hardware and software components. The following diagram shows the memory pyriamid with various components we mentioned:
+
+   <img src="images/ComputerMemoryHierarchy.png" alt="Memory hierarchy pyramid" width="600" />  
+
+   [[Image credit](https://en.wikipedia.org/wiki/Memory_hierarchy)]  
 
 
 #### 2. Apply
