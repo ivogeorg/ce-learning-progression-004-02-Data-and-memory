@@ -245,6 +245,7 @@ A line is selected when it carries a value of 1 and deselected when it carries a
    3. Memory alignment.  
       1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
    4. Calculation of array element addresses.  
+   
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
       
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
@@ -252,7 +253,7 @@ A line is selected when it carries a value of 1 and deselected when it carries a
 7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a [`Buffer`](https://makecode.microbit.org/types/buffer).  
    1. [`Int32LE`](https://makecode.microbit.org/types/buffer/number-format):  
       - `-1` for none  
-      - buffer of depth 47 for offsets in range [0, 46], to stay in range  
+      - buffer of depth 47 for offsets in range [0, [46](http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html)], to stay in range  
    2. **TODO:** How does `Buffer` work?
       - How big is it?  
       - Are gaps handled gracefully?  
