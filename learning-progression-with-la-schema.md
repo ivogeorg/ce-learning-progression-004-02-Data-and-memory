@@ -95,7 +95,7 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
 5. The individual elements of arrays are stored `[<cept>]`_consecutively_ in memory. For example, the previous example may very well be the memory layout of the array `let boolArr : boolean = [false, false, true, true]` provided the micro:bit uses word alignment for booleans.
 6. Object data is stored in memory blocks with the cumulative size of the class fields. The following sketch shows this for some familar classes from previous steps:
 
-   <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="600" />  
+   <img src="images/malloc-sim-1.png" alt="Memory management with malloc and free (1 of 2)" width="800" />  
 
 7. Of course, program code is also stored in memory. Here we need to distinguish among the following:
    1. Program source code is stored as regular files in the file system, usually on drives, known as `[<cepc>]`_secondary storage_. For example, `screensavers.js` is a source file.    
@@ -154,7 +154,7 @@ Note the following:
 
 The following sketch illustrates how memory is accessed:
 
-<img src="images/memory-access.png" alt="Memory access" width="600" />  
+<img src="images/memory-access.png" alt="Memory access" width="800" />  
 
 Things to notice:
 1. The control line determines if the access is for reading (R) or writing (W). This is usually a single line (that is, 1 bit).    
@@ -187,7 +187,7 @@ A line is selected when it carries a value of 1 and deselected when it carries a
 **TODO:**  
 1. Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
 
-<img src="images/array-addressing.png" alt="Array element address calculation" width="600" />  
+<img src="images/array-addressing.png" alt="Array element address calculation" width="800" />  
 
 2. **TODO: Sketch** Array address calculation example with sketch.  
 3. Random access. RAM.  
@@ -240,7 +240,8 @@ A line is selected when it carries a value of 1 and deselected when it carries a
    1. 2D array.  
    2. Array sorted by first column.  
    3. Create an index array for the second column.  
-      <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="600" />  
+   
+      <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="800" />  
 
 5. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** Array-based malloc simulation ([program draft](https://github.com/ivogeorg/ce-learning-progressions-selected-programs/blob/master/malloc-simulation.js):
    1. Byte-array simulation.
@@ -249,7 +250,7 @@ A line is selected when it carries a value of 1 and deselected when it carries a
       1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
    4. Calculation of array element addresses.  
    
-      <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="600" /> 
+      <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="800" /> 
       
 6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
 
