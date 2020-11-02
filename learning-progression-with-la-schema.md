@@ -221,20 +221,14 @@ The elements of an array are stored in memory `[<cept>]`_continguously_ (meaning
 
 There is a most important consequence of this mechanism, namely that the access of any element takes `[<cept>]`_constant time_ (meaning it doesn't depend on the size of the array or the size of the individual elements or their order or their particular index).
 
-Memory works the same way: any address is accessed as fast as any other. This is important during execution, because a process has code and data in different segments of memory, sometimes far apart from each other. As a process executes, it tends to access memory at random. This is called `[<cept>]`_random access_, which gives the primary-storage (aka `[<cept>]`_main_) memory the name `[<cept>]`_Random Access Memory (RAM)_. The micro:bit has [16KB](https://tech.microbit.org/hardware/1-5-revision/#nrf51-application-processor) (read as 16 `[<cept>]`_kilobytes_) of RAM.  
+Memory works the same way: any address is accessed as fast as any other. This is important during execution, because a process has code and data in different segments of memory, sometimes far apart from each other. As a process executes, it tends to access memory at random. This is called `[<cept>]`_random access_, which gives the primary-storage (aka `[<cept>]`_main_) memory the name `[<cept>]`_Random Access Memory (RAM)_. The current version of the micro:bit has [16KB](https://tech.microbit.org/hardware/1-5-revision/#nrf51-application-processor) (read as 16 `[<cept>]`_kilobytes_) of RAM. The upcoming [version 2](https://tech.microbit.org/hardware/#nrf52-application-processor) has 128KB, or 8 times larger. A [modern machine learning workstation](https://lambdalabs.com/gpu-workstations/vector/customize) can have up to 256GB (read as 256 `[<cept>]`_gigabytes_), or about 16 million times larger than the current micro:bit.  
 
+RAM, usually called main memory, is used as dynamic data storage **only** during process execution. It is `[<cept>]`_volatile_ memory (meaining the data is lost when the device is turned off). This is so for the micro:bit as well. One of the first significant programs written for the micro:bit shortly after its launch, the game [`Bitflyer`](https://hackernoon.com/the-first-video-game-on-the-bbc-micro-bit-probably-4175fab44da8) shows the layout of the 16KB of RAM (it lacks a table of contents, so just find the **Memory** section) in color, pointing out the different regions and their clients. Note that this is just a snapshot and is not the permanent structure of the RAM, which is just a large array. All data in the array needs to be interpreted by the memory client to make sense. (Note that this is for a program written in MicroPython, not TypeScript.)
 
-
-
-4. Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
-5. ROM.  
-6. Flash:
-   1. Acts as ROM for micro:bit.  
-   2. Programmable ([software](https://tech.microbit.org/software/), [hardware](https://tech.microbit.org/hardware/#interface)).  
-   3. The micro:bit progam (i.e. the HEX file) is written to the Flash ROM.  
-7. https://www.google.com/search?q=is+flash+rom+or+ram  
-8. Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)  
-9. _What's in the firmware of the micro:bit? Is it the program for the interface chip? Is the source code available?_  
+The micro:bit stores its programs in a different memory device, which is called [Flash ROM](https://tech.microbit.org/hardware/1-5-revision/#nrf51-application-processor), of which v1.5 has 256KB and v2 has 512KB. Let's unpack this:
+1. [Flash](https://en.wikipedia.org/wiki/Flash_memory) is a type of memory device. It is `[<cept>]`_non-volatile_ (meaning the data doesn't get erazed when the device is turned off). Disconnecting the micro:bit from the battery pack and the USB cable turnes it off, but the program on it doesn't get lost or change until the device is back on and re-programmed.  
+2. ROM stands for `[<cept>]`_Read-Only Memory_, which is self-explanatory. The program code is only read from the Flash ROM during process execution.  
+3. The Flash ROM, of course, is not a memory to which we cannot write at all. The process of programming the micro:bit (by "dropping" the hex file onto the micro:bit "drive") is a process of _writing_ the program memory. It is performed by the so called [interface chip](https://tech.microbit.org/hardware/1-5-revision/#interface), which mediates between the USB channel, connected to the programming computer, and the [application processor](https://tech.microbit.org/hardware/1-5-revision/#nrf51-application-processor). The process is shown schematically on the [micro:bit software overview page](https://tech.microbit.org/software/) and described in more detail [here](https://tech.microbit.org/software/daplink-interface/). The interface chip has a program, called `[<cept>]`[_firmware_](https://microbit.org/get-started/user-guide/firmware/), which receives the program in the form of a HEX file and programs the application processor.
 
 ##### Memory management
 [[toc](#table-of-contents)]
