@@ -186,6 +186,9 @@ A line is selected when it carries a value of 1 and deselected when it carries a
 
 **TODO:**  
 1. Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
+
+<img src="images/array-addressing.png" alt="Array element address calculation" width="600" />  
+
 2. **TODO: Sketch** Array address calculation example with sketch.  
 3. Random access. RAM.  
 4. Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
