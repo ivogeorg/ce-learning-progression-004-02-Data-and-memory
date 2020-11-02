@@ -317,16 +317,54 @@ This is because of the following crucial roles of memory in a computer:
    
       <img src="images/index-array-into-record-array-hex.png" alt="Index into Record table" width="800" />  
 
-5. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** Array-based malloc simulation ([program draft](https://github.com/ivogeorg/ce-learning-progressions-selected-programs/blob/master/malloc-simulation.js):
-   1. Byte-array simulation.
-   2. Object memory footprint.  
-   3. Memory alignment.  
-      1. Alignment should be left to the learner, so remove from `enum MemoryFootprint`.   
-   4. Calculation of array element addresses.  
+5. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** By virtue of most operating systems and machine learning platforms being written in C/C++, the most popular memory management code is the [`malloc`+`free`](https://en.cppreference.com/w/c/memory/malloc) duo from the [C Standard Library](https://en.wikipedia.org/wiki/C_standard_library). We will simulate their function. Take a look at the [memory layout sketch](#memory-layout) and the following code:
+   ```javascript
+   // memory footprint in bits
+   enum MemoryFootprint {
+       DEADBEEF = 0,               // empty (available)
+       Point = 64,                 // number: x, y
+       BrightPoint = 96,           // number: x, y, brightness
+       Raindrop = 160,             // number: x, y, brightness, distance, step
+       Marble = 168,               // number: x, y, brightness, step, counter; boolean: active
+       MarbleAligned = 192         // number: x, y, brightness, step, counter, active
+   }
+
+   // heap : assume a byte array (i.e. each array index is the address of a byte)
+   let heap : MemoryFootprint[] = []
+   const HEAP_BYTE_SIZE : number = 50
+   for (let i=0; i<HEAP_BYTE_SIZE*8; i++) heap.push(MemoryFootprint.DEADBEEF)  // "zero out"
+
+   // memory management (allocations)
+   enum Alloc { StartAddr = 0, NumBytes }
+   let alloc : Alloc[] = []
+
+   // memory management API
+   function malloc(bytes : number) : number {
+       /* TODO */
+
+       return null
+   }
+
+   function free(addr : number) : void {
+      /* TODO */
+   }
+
+   // microbit memory guard
+   basic.showString('OK')
+   ```
+   1. We define an enumerated type `MemoryFootprint` to define how much memory (in bits) is taken to store the data of an object of each of several screensaver types. The sketch shows this visually.    
+   2. We declare a `[<cept>]`_heap_ of free memory available for dynamic allocation (meaning during process execution). This is the memory block the functions `malloc` and `free` will manage, fullfilling requests from memory clients. We assume that `heap` is an array of bytes.    
+   2. The function `malloc` (standing for _memory allocate_) finds a suitable place to store the number of bytes in its argument, marks them as _unavailable_ (e.g. store a `1` in the heap "bytes") and returns the address to the caller. The address is the heap array index of the first "byte" in the new allocation.
+   3. The function `free` takes the address of the allocation and marks the allocated bytes as _available_ (e.g. by setting the "bytes" to zero).  
+   4. Note that the size of each allocation is not passed as an argument to `free`, and is only present in `malloc`. This means that we need to keep track of the size (in bytes) of each allocation. This is the function of the `alloc` array. The following sketch shows the effect of several calls to `malloc` and `free`: 
    
       <img src="images/malloc-sim-2.png" alt="Memory management with malloc and free (2 of 2)" width="800" /> 
+     
+      Notice that, because of the unpredictable sequence of allocations and free-ups an executing process generates, the heap becomes `[<cept>]`_fragmented_. There are two `[<cept>]`_policies_ which are used to look for a free "hole" to fit a new allocation, `[<cept>]`_first-fit_ (which finds the first hole that is large enough w/o regard for fragmentation) and `[<cept>]`_best-fit_ (which finds the first hole that is as large as the allocation but, if possible, no larger).  
+   5. Use the scenarios in the sketch to compose a sequence of `malloc` and `free` calls to test your code.  
+   6. To provide visual evidence that your code is working, notice that the heap is declared to be 50 "bytes", and write code to show on the 5x5 LED matrix whether each 2-byte block is free (dark LED) or occupied (lit LED).  
       
-6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** **TODO** The same as above, using `Buffer` and explicit numerical types.  
+6. `[<lernact-prac>]`**[Optional challenge, max 10 extra step points]** Take your program from 2.2.5 and rewrite it using a `Buffer` for the heap.    
 
 7. `[<lernact-prac>]`**[Optional challenge, max 5 extra step points]** **TODO** Fibonacci with memoisation/caching using a [`Buffer`](https://makecode.microbit.org/types/buffer).  
    1. [`Int32LE`](https://makecode.microbit.org/types/buffer/number-format):  
