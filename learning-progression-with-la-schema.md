@@ -11,7 +11,7 @@ Table of Contents
       * [1\. Study](#1-study)
         * [Arrays and memory](#arrays-and-memory)
         * [Memory layout](#memory-layout)
-        * [Fixed width revisited](#fixed-width-revisited)
+        * [Numeric types, buffers, and caches](#numeric-types-buffers-and-caches)
         * [Addressing](#addressing)
         * [References and pointers](#references-and-pointers)
         * [Types of memory](#types-of-memory)
@@ -108,7 +108,7 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
       5. Using the process metadata block, the process is put on a `[<cept>]`_queue_ (which is just a list where elements are added from one end and removed from the other) of processes ready to execute.  
 8. Just as variables are named data, functions and class methods are named code. When a function or method is called, the process knows where the code is. For class methods, they are not stored for each object, but only once for the class. When a method is called on an object, the class code is executed.
 
-##### Fixed width revisited
+##### Numeric types, buffers, and caches
 [[toc](#table-of-contents)]
 
 The MakeCode environment silently lumps both integer and floating-point numbers in its `number` type. _Note that the type [`Number`](https://makecode.microbit.org/types/number) (note the capitalized type name) is a 32-bit 2s-complement signed integer, and its support is not very stable at present. Most importantly, the two types `number` and `Number` are not compatible and/or mutually interconvertible, at least in MakeCode, where the [JavaScript-like language we are using to program the micro:bit](https://makecode.com/language) is only a **subset** of TypeScript. For example:_
@@ -149,9 +149,14 @@ const BUFF_BYTE_SIZE = 16
 let buff : Buffer = pins.createBuffer(BUFF_BYTE_SIZE)
 
 for (let i=0; i<BUFF_BYTE_SIZE; i++) buff.setNumber(NumberFormat.Int8LE, i, 10 * i)
+
 basic.showString("The buffer has size " + buff.length + "bytes")
+
+// Interpret as bytes
 basic.showStrint("The contents, in signed bytes, are:")
 for (let i=0; i<BUFF_BYTE_SIZE; i++) basic.showNumber(buff.getNumber(NumberFormat.Int8LE, i)
+
+// Interpret as integers
 basic.showStrint("The contents, in signed integers, are:")
 for (let i=0; i<BUFF_BYTE_SIZE; i+=4) basic.showNumber(buff.getNumber(NumberFormat.Int32LE, i)
 ```
@@ -159,6 +164,12 @@ The buffer works very much like regular memory:
 1. It is initialized as some number of _bytes_.  
 2. Each of these bytes is individually addressable by index (the second argument of the `setNumber` and `getNumber` functions).  
 3. The bytes can be interpreted as parts of [wider types](https://makecode.microbit.org/types/buffer/number-format), e.g. 32-bit signed integers, as shown in the example. Note the step of 4 of the last `for` loop.    
+
+Buffers are best used as transient storage in applications which require a `[<cept>]`_cache_. A cache is small but fast storage for the most often used computational artifacts and data. Two example applications for buffers are:
+1. In input-output operations, data has to travel across a communication channel (usually 1, 2, 3, or more parallel wires, depending on the application). The speed of the channel is usually measured in bits per second (abbr. bps or bits/sec). If the speed of the channel does not match the speed of generation of output data or processing of input data, data would be lost. Buffers can be used to temporarily store data that might otherwise be lost, until the slower side of the buffer catches up with the faster side.  
+2. Some functions, especially recursive functions, perform expensive computations and are, on top of that, inefficient. The innefficiency often comes from having to do the same computation multiple times. It's much better to keep a buffer with results of expensive computations, to speed up the overall processing speed. The buffer can be [passed by reference](#references-and-pointers) to the recursive calls.  
+
+More generally, a cache is a small set of objects, which are made available _much faster_ than from their general storage and _much closer_ (physically) to where they are needed. Thus, `[<cept>]`_caching_ is a widely used algorithmic principle, in computing and widely in engineering.  
 
 ##### Addressing  
 [[toc](#table-of-contents)]
