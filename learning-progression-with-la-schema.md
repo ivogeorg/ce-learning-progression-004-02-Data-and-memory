@@ -158,7 +158,7 @@ for (let i=0; i<BUFF_BYTE_SIZE; i+=4) basic.showNumber(buff.getNumber(NumberForm
 The buffer works very much like regular memory:
 1. It is initialized as some number of _bytes_.  
 2. Each of these bytes is individually addressable by index (the second argument of the `setNumber` and `getNumber` functions).  
-3. The bytes can be interpreted as parts of [wider types](https://makecode.microbit.org/types/buffer/number-format), e.g. 32-bit signed integers, as shown in the example.  
+3. The bytes can be interpreted as parts of [wider types](https://makecode.microbit.org/types/buffer/number-format), e.g. 32-bit signed integers, as shown in the example. Note the step of 4 of the last `for` loop.    
 
 ##### Addressing  
 [[toc](#table-of-contents)]
@@ -204,13 +204,17 @@ Thus, languages like C and C++ give very low-level control over program memory t
 ##### Types of memory
 [[toc](#table-of-contents)]
 
-**TODO:**  
-1. Array formula: _base address + index * base type size_. Arrays and memory revisited. Constant access time regardless of address. RAM.  
+The elements of an array are stored in memory `[<cept>]`_continguously_ (meaning one after the other without gaps). This supports a very simple and efficient mechanism for element selection by index. The address of a particular element is calculated with the formula _base address + index * base type size_. Here is a sketch for illustration:
 
 <img src="images/array-addressing.png" alt="Array element address calculation" width="800" />  
 
-2. **TODO: Sketch** Array address calculation example with sketch.  
-3. Random access. RAM.  
+There is a most important consequence of this mechanism, namely that the access of any element takes `[<cept>]`_constant time_ (meaning it doesn't depend on the size of the array or the size of the individual elements or their order or their particular index).
+
+Memory works the same way: any address is accessed as fast as any other. This is important during execution, because a process has code and data in different segments of memory, sometimes far apart from each other. As a process executes, it tends to access memory at random. This is called `[<cept>]`_random access_, which gives the primary-storage (aka `[<cept>]`_main_) memory the name `[<cept>]`_Random Access Memory (RAM)_. The micro:bit has [16KB](https://tech.microbit.org/hardware/1-5-revision/#nrf51-application-processor) (read as 16 `[<cept>]`_kilobytes_) of RAM.  
+
+
+
+
 4. Comparison of RAM sizes (microbit versions, smartphones, PC, ML workstations, datacenter pools).  
 5. ROM.  
 6. Flash:
@@ -219,7 +223,7 @@ Thus, languages like C and C++ give very low-level control over program memory t
    3. The micro:bit progam (i.e. the HEX file) is written to the Flash ROM.  
 7. https://www.google.com/search?q=is+flash+rom+or+ram  
 8. Interface chip. ([Hardware in LP005](https://github.com/ivogeorg/ce-learning-progression-005-transistors/blob/master/learning-progression-with-la-schema.md)?)  
-9. _What's in the firmware of the micro:bit?_  
+9. _What's in the firmware of the micro:bit? Is it the program for the interface chip? Is the source code available?_  
 
 ##### Memory management
 [[toc](#table-of-contents)]
