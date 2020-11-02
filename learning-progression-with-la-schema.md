@@ -138,16 +138,27 @@ let y : int16                     // range -32768 to 32767
 let z : int32                     // range -2147483648 to 2147483647
 ```
 Note the following:
-1. The ranges differ in correspondence to the bit width of the type.  
+1. The ranges differ in correspondence to the bit width of the type: the larger the width, the larger the range.    
 2. The signed integers are 2s-complement, as can be seen from the fact that the negative integers are one more than the positive ones.  
 
-**TODO**
-1. No arrays, only buffers.  
-2. Buffers like objects, with explicit offsets.  
-3. The fullest control over memory layout!  
-   - [`Buffer`](https://makecode.microbit.org/types/buffer)  
-   - [Number formats](https://makecode.microbit.org/types/buffer/number-format)  
+Arrays are not currently supported for these types. Instead of arrays, we can use `[<cept>]`_buffers_, which in general are unstructured blocks of memory where the programmer has full control over the memory layout. MakeCode supports the type [`Buffer`](https://makecode.microbit.org/types/buffer) for just such purpose. Here is an example:
+```javascript
+// Example 2.1.3
 
+const BUFF_BYTE_SIZE = 16
+let buff : Buffer = pins.createBuffer(BUFF_BYTE_SIZE)
+
+for (let i=0; i<BUFF_BYTE_SIZE; i++) buff.setNumber(NumberFormat.Int8LE, i, 10 * i)
+basic.showString("The buffer has size " + buff.length + "bytes")
+basic.showStrint("The contents, in signed bytes, are:")
+for (let i=0; i<BUFF_BYTE_SIZE; i++) basic.showNumber(buff.getNumber(NumberFormat.Int8LE, i)
+basic.showStrint("The contents, in signed integers, are:")
+for (let i=0; i<BUFF_BYTE_SIZE; i+=4) basic.showNumber(buff.getNumber(NumberFormat.Int32LE, i)
+```
+The buffer works very much like regular memory:
+1. It is initialized as some number of _bytes_.  
+2. Each of these bytes is individually addressable by index (the second argument of the `setNumber` and `getNumber` functions).  
+3. The bytes can be interpreted as parts of [wider types](https://makecode.microbit.org/types/buffer/number-format), e.g. 32-bit signed integers, as shown in the example.  
 
 ##### Addressing  
 [[toc](#table-of-contents)]
@@ -180,10 +191,11 @@ Now that we know about memory addresses, we can recall the short mention of refe
 
 Some languages, most notably C and C++, have explicit reference types, called `[<cept>]`_pointers_. Here is a small example:
 ```c
-// Example 2.1.3
+// Example 2.1.4
 
-int i = 6;                                                 // just a 32-bit signed integer variable
+int i = 6;                                                 // just a 32-bit signed integer variable, with a type `int`
 int *ptr = &i;                                             // a pointer variable, also 4 bytes, holding the address of i
+                                                           // the type of ptr is `int *`, a pointer to an integer
 
 printf("Integer %d, pointer dereference %d\n", i, *ptr);   // a pointer can be dereferenced to show the value at the address it holds
 ```
