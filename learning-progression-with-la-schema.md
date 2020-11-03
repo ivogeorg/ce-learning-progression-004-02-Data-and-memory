@@ -75,7 +75,7 @@ The simplicity of memory devices shift the burden of efficient usage to the soft
       All of these look like bit-patterns in binary. For example, the bit pattern:
       ```
              -----------------------------------------------------------------
-      0b0000 |0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
+      0b0000 |1|0|0|1|1|1|1|1|1|1|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|
              -----------------------------------------------------------------
       ```
       represents 2682257408<sub>10</sub> in unsigned integers, -1612709888<sub>10</sub> in signed integers, or -9.48676900925e-20 in floating-point numbers. _Note that the last number is an example of a short-hand representation of scientific notation. The `e-20` means * 10<sup>-20</sup>._ So, data types are important to distinguish between different interpretation of binary patterns in memory.   
