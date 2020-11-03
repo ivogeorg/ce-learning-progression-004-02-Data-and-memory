@@ -30,3 +30,6 @@ Originally in Step 004-02
       - Is there automatic expansion?  
       - Can positions be `undefined`?  
 
+## Resources
+
+1. [Rapid tables](https://www.rapidtables.com/).  
